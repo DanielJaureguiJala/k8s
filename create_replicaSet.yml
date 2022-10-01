@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: CI-rs
+  labels:
+    app: CI-server
+    env: dev
+    tier: CI
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: CI
+  template:
+    metadata:
+      name: jenkins
+      tier: CI
+    spec:
+      containers:
+        - name: jenkins
+        image: jenkins
+        ports:
+          - containerPort: 8080
+    
