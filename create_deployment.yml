@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-products-deploy
+  labels:
+    app: web-server
+    env: dev
+    tier: frontend
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      tier: frontend
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: store-products
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: store-products
+        image: calebespinoza/store-products:3.0
+        ports:
+        - containerPort: 80
