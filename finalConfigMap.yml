@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: app-configs
+  labels:
+    tier: final
+
+data:
+  mysql_db_name: "myappdb"

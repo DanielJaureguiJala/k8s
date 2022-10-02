@@ -1,0 +1,5 @@
+.dockerignore
+init.sql
+.git
+__pycache__
+docker-compose.yml

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+  labels:
+    tier: final
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      tier: final
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        app: mysql
+        tier: final
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+          env:
+            - name: DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-configs
+                  key: mysql_db_name
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mysql_password
