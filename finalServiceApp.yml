@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: final-svc
+  labels:
+    tier: final
+spec:
+  selector:
+    app: final
+  type: ClusterIP
+  ports:
+    - targetPort: 8080
+      port: 8080
