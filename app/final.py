@@ -85,8 +85,8 @@ def list():
 
 def __connect_to_db():
     conn = mysql.connector.connect(
-        host="mydatabase.lei",
-        user="myappdb",
+        host="mysql-svc",
+        user="root",
         password="root",
         database="myappdb"
     )

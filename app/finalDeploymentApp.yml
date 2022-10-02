@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: final-deploy
+  labels:
+    tier: final
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: final
+      tier: final
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: final-pod
+      labels:
+        app: final
+        tier: final
+    spec:
+      containers:
+        - name: finalk8s
+          image: danieljaureguijala/finalk8s:0.3
+          ports:
+            - containerPort: 8080
